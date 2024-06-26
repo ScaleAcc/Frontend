@@ -1,9 +1,9 @@
 # React.js Project V18.2.0 + TypeScript V7.2.0
-1. *Install Project Dependencies*:
-   bash
+1. **Install Project Dependencies**:
+   ```bash
    npm install
 2. **Run The Project**:
-    bash
+    ```bash
     # npm
     npm run dev
 
