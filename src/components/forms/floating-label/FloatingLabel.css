@@ -1,0 +1,38 @@
+.floating__label {
+    position: relative;
+    margin-top: 2rem;
+}
+
+.floating__label input {
+    border: 1px solid var(--primary-color);
+    border-radius: 0.5rem;
+    height: 50px;
+    outline: none;
+    padding-left: 0.5rem;
+    width: 100%;
+}
+.floating__label input::placeholder {
+    color: transparent;
+    transition:color 0.3 linear;
+    transition-delay: 0.3s;
+}
+
+.floating__label label {
+    position: absolute;
+    left: 0.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: 0.3s linear;
+    background-color: white;
+    padding: 0 3px;
+    color: var(--secondary-color);
+}
+
+.floating__label input:focus::placeholder{
+    color: var(--secondary-color);
+}
+.floating__label input:focus + label,
+.floating__label input:not(:placeholder-shown) + label {
+    top: 0%;
+    color: var(--primary-color);
+}

@@ -5,6 +5,16 @@
 * {
   box-sizing: border-box;
 }
+:root{
+  --primary-color:#1C1C1C;
+  --secondary-color:#9FA1A6;
+  --primary-background:#111111;
+  --secondary-background:#EBEEF0;
+  --approve-color:#0085FF;
+  --approve-background:#D0F4FF;
+  --success-color:#55BC97;
+  --blue-color:#628CDD;
+}
 a {
   text-decoration: none;
 }
