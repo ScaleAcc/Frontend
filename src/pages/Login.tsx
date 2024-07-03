@@ -16,8 +16,8 @@ const Login = () => {
 
   const handleLogin = (e:FormEvent)=>{
     e.preventDefault();
-    console.log('Email:', email);
-    console.log('Password:', password);
+    console.log(email);
+    console.log(password);
   }
 
   return (
