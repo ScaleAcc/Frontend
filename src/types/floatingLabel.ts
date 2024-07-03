@@ -1,4 +1,8 @@
+import React from "react"
+
 export type TFloatingLabel = {
-    type: string,
+    type: "text" | "password" | "email" | "date",
     label: string,
+    value: string,
+    onChange : (e: React.ChangeEvent<HTMLInputElement>) => void;
 }

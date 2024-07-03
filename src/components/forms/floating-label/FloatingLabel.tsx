@@ -1,7 +1,7 @@
 import "./FloatingLabel.css";
 import { TFloatingLabel } from "@customTypes/floatingLabel";
 
-const FloatingLabel = ({ type, label }:TFloatingLabel) => {
+const FloatingLabel = ({ type, label, value, onChange }:TFloatingLabel) => {
   return (
         <div className="floating__label">
           <input
@@ -9,6 +9,8 @@ const FloatingLabel = ({ type, label }:TFloatingLabel) => {
             autoComplete="off"
             id={`${type}-${label}`}
             placeholder={label}
+            value={value}
+            onChange={onChange}
           />
           <label htmlFor={`${type}-${label}`}>{label}</label>
         </div>

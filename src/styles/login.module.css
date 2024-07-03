@@ -1,63 +1,49 @@
-.login__form{
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-content: center;
-    background-color: var(--secondary-background);
-    position: relative;
+.login__form {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  background-color: var(--secondary-background);
+  position: relative;
 }
-.login__header{
-    color: var(--primary-color);
-    text-align: center;
-    font-weight: bold;
-    text-transform: uppercase;
-    font-size: 24px;
-    letter-spacing: 1rem;
+.login__header {
+  color: var(--primary-color);
+  text-align: center;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 24px;
+  letter-spacing: 1rem;
 }
-form{
-    width: 25%;
-    margin: 0 auto;
-    padding: 4rem 2rem;
-    border-radius: 0.5rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    background-color: white;
-    z-index: 9;
+form {
+  width: 25%;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: white;
+  z-index: 9;
 }
-input[type="submit"]{
-    background-color: var(--primary-color);
-    border: 1px solid var(--primary-color);
-    width: 100%;
-    color: white;
-    margin-top: 1.5rem;
-    padding: 1rem 0;
-    border-radius: 0.5rem;
-    transition: 0.3s linear;
+.wave__icon {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  bottom: 0;
 }
-input[type="submit"]:hover{
-    background-color: white;
-    color: var(--primary-color);
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  form {
+    width: 50% !important;
+  }
+  .wave__icon svg {
+    height: 320px;
+  }
 }
-.wave__icon{
-    position: absolute;
-    width: 100%;
-    left: 0;
-    bottom: 0;
-}
-@media screen and (min-width:768px) and (max-width:1023px){
-    form{
-        width: 50% !important;
-    }
-    .wave__icon svg{
-        height: 320px;
-    }
-}
-@media screen and (max-width:1023px){
-    form{
-        width: 80%;
-    }
-    .wave__icon svg{
-        height: 320px;
-    }
+@media screen and (max-width: 1023px) {
+  form {
+    width: 80%;
+  }
+  .wave__icon svg {
+    height: 320px;
+  }
 }
