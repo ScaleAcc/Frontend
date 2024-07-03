@@ -2,7 +2,7 @@
 import { MainLayout } from "@layouts/index";
 // Pages
 import Login from "@pages/Login";
-// import Error from "@pages/Error";
+import Error from "@pages/Error";
 // Router Functions
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
@@ -10,7 +10,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
-    // errorElement:<Error />,
+    errorElement:<Error />,
     children: [
       {
         index: true,

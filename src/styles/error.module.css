@@ -1,0 +1,43 @@
+.error__page{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    height: 100vh;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+.error__header{
+    font-size: 6rem;
+    font-weight: bold;
+    text-transform: capitalize;
+    letter-spacing: 2rem;
+    display: flex;
+    justify-content: center;
+    color: var(--primary-color);
+}
+.error__header span{
+    display: block;
+    animation: fallDown 4s ease-in-out infinite;
+}
+
+.error__desc{
+    color: var(--primary-color);
+    font-weight: 500;
+}
+.error__desc a{
+    color: var(--approve-color);
+}
+.error__desc a:hover{
+    text-decoration: underline;
+}
+
+@keyframes fallDown{
+    from{
+        transform: rotate(0deg);
+    }
+    to{
+        transform: rotate(360deg);
+    }
+}
