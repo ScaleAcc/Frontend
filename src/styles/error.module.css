@@ -19,7 +19,7 @@
 }
 .error__header span{
     display: block;
-    animation: fallDown 4s ease-in-out infinite;
+    animation: fallDown 4s linear infinite;
 }
 
 .error__desc{
@@ -34,10 +34,19 @@
 }
 
 @keyframes fallDown{
-    from{
+    0%{
         transform: rotate(0deg);
     }
-    to{
-        transform: rotate(360deg);
+    25%{
+        transform: rotate(5deg);
+    }
+    50%{
+        transform: rotate(10deg);
+    }
+    75%{
+        transform: rotate(5deg);
+    }
+    100%{
+        transform: rotate(0deg);
     }
 }
