@@ -24,10 +24,10 @@ const Login = () => {
     <div className={styles.login__form}>
       <form>
         <h2 className={styles.login__header}>Scale</h2>
-        <FloatingLabel type="email" label="Email" value={email} onChange={handleEmailChange}/>
-        <FloatingLabel type="password" label="Password" value={password} onChange={handlePasswordChange}/>
+        <FloatingLabel type="email" label="البريد الاكترونى" value={email} onChange={handleEmailChange}/>
+        <FloatingLabel type="password" label="كلمة المرور" value={password} onChange={handlePasswordChange}/>
 
-        <PrimaryButton title="Log in" onClick={handleLogin}/>
+        <PrimaryButton title="تسجيل الدخول" onClick={handleLogin}/>
       </form>
       <div className={styles.wave__icon}>
         <Wave />

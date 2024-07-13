@@ -6,18 +6,24 @@ import {
     PiGear, 
 } from "react-icons/pi";
 import { IoHomeOutline } from "react-icons/io5";
+import { TbLayoutSidebarRightCollapse } from "react-icons/tb";
+import { useState } from "react";
 const {
   page__sidebar,
+  collapse__sidebar,
   top__sidebar,
   sidebar__logo,
   sidebar__pages,
   pages__links,
   sidebar__settings,
+  sidebar__collapse
 } = styles;
 
 const Sidebar = () => {
+  const [collapse, setCollapse] = useState(false);
+
   return (
-    <aside className={page__sidebar}>
+    <aside className={`${page__sidebar} ${collapse ? collapse__sidebar:""}`}>
       <div className={top__sidebar}>
         <h2 className={sidebar__logo}>scale</h2>
 
@@ -41,16 +47,6 @@ const Sidebar = () => {
             <PiVault size="25" />
             <span>الخزنة</span>
           </NavLink>
-
-          <NavLink
-            className={({ isActive }) =>
-              isActive ? `${pages__links} ${styles.active}` : pages__links
-            }
-            to={"/vault"}
-          >
-            <PiVault size="25" />
-            <span>الخزنة</span>
-          </NavLink>
         </div>
       </div>
 
@@ -59,6 +55,12 @@ const Sidebar = () => {
             <PiGear size="25"/>
             <span>الاعدادت</span>
         </NavLink>
+        <div 
+          className={sidebar__collapse} 
+          onClick={()=> setCollapse(!collapse)}
+        >
+          <TbLayoutSidebarRightCollapse size="30"/>
+        </div>
       </div>
     </aside>
   );

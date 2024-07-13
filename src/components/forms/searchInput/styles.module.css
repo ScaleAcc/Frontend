@@ -6,7 +6,7 @@
     border-radius: 0.25rem;
     outline: none;
     background-color: transparent;
-    padding-right: 1.25rem;
+    padding: 0.3rem 1.25rem;
 }
 .search__input label{
     position: absolute;

@@ -52,6 +52,6 @@ h6 {
   transition: 0.3s linear;
 }
 .btn-primary:hover{
-  background-color: white;
+  background-color: transparent;
   color:  var(--primary-background);
 }
