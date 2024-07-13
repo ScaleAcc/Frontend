@@ -42,3 +42,15 @@ h6 {
   border-radius: 0.25rem;
   padding: 0.5rem 1.5rem;
 }
+.btn-primary{
+  background-color: var(--primary-background);
+  color: white;
+  padding: 0.5rem 2rem;
+  border: 1px solid var(--primary-background);
+  border-radius: 0.5rem;
+  transition: 0.3s linear;
+}
+.btn-primary:hover{
+  background-color: white;
+  color:  var(--primary-background);
+}
