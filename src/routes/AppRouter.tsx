@@ -5,6 +5,7 @@ import Login from "@pages/Login";
 import Error from "@pages/Error";
 // Router Functions
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Vault from "@pages/Vault";
 
 const router = createBrowserRouter([
   {
@@ -16,6 +17,10 @@ const router = createBrowserRouter([
         index: true,
         element: <p>Home</p>,
       },
+      {
+        path:"/vault",
+        element: <Vault />
+      }
     ],
   },
   {

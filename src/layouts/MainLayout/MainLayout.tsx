@@ -3,12 +3,12 @@ import styles from "./styles.module.css";
 // import styles from "./styles.module.css";
 import { Outlet } from "react-router-dom";
 
-const {mainLayout} = styles;
+const {mainLayout, pagesContent} = styles;
 const MainLayout = () => {
   return (
     <div className={mainLayout}>
         <Sidebar />
-        <div>
+        <div className={pagesContent}>
             <Outlet />
         </div>
     </div>

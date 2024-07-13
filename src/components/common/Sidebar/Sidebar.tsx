@@ -5,7 +5,7 @@ import {
     PiVault,
     PiGear, 
 } from "react-icons/pi";
-
+import { IoHomeOutline } from "react-icons/io5";
 const {
   page__sidebar,
   top__sidebar,
@@ -28,8 +28,8 @@ const Sidebar = () => {
             }
             to={"/"}
           >
-            <PiVault size="25" />
-            <span>الخزنة</span>
+            <IoHomeOutline size="25" />
+            <span>الصفحة الرئيسية</span>
           </NavLink>
 
           <NavLink

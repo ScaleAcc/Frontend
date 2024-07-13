@@ -1,3 +1,6 @@
 .mainLayout{
     display: flex;
 }
+.pagesContent{
+    width: 100%;
+}
