@@ -1,5 +1,10 @@
+.vault__page{
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
 .vault__header{
     display: flex;
     justify-content: space-between;
-    margin-bottom: 1.5rem;
+    align-items: center;
 }
