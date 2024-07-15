@@ -6,7 +6,11 @@ import {
     PiGear, 
 } from "react-icons/pi";
 import { IoHomeOutline } from "react-icons/io5";
+import { FaRegMoneyBillAlt } from "react-icons/fa";
+import { MdOutlineAttachMoney } from "react-icons/md";
 import { TbLayoutSidebarRightCollapse } from "react-icons/tb";
+import { CiDatabase } from "react-icons/ci";
+import { FiUsers } from "react-icons/fi";
 import { useState } from "react";
 const {
   page__sidebar,
@@ -46,6 +50,46 @@ const Sidebar = () => {
           >
             <PiVault size="25" />
             <span>الخزنة</span>
+          </NavLink>
+
+          <NavLink
+            className={({ isActive }) =>
+              isActive ? `${pages__links} ${styles.active}` : pages__links
+            }
+            to={"/accounts-tree"}
+          >
+            <MdOutlineAttachMoney size="25" />
+            <span>شجرة الحسابات</span>
+          </NavLink>
+
+          <NavLink
+            className={({ isActive }) =>
+              isActive ? `${pages__links} ${styles.active}` : pages__links
+            }
+            to={"/home-data"}
+          >
+            <CiDatabase size="25" />
+            <span>البيانات الرئيسية</span>
+          </NavLink>
+
+          <NavLink
+            className={({ isActive }) =>
+              isActive ? `${pages__links} ${styles.active}` : pages__links
+            }
+            to={"/human-resource"}
+          >
+            <FiUsers size="25" />
+            <span>الموارد البشرية</span>
+          </NavLink>
+
+          <NavLink
+            className={({ isActive }) =>
+              isActive ? `${pages__links} ${styles.active}` : pages__links
+            }
+            to={"/income"}
+          >
+            <FaRegMoneyBillAlt size="25" />
+            <span>الدخل</span>
           </NavLink>
         </div>
       </div>
