@@ -1,11 +1,10 @@
-import ReactDOM from 'react-dom/client'
+import ReactDOM from "react-dom/client";
 // Redux
 // Styles
 import "bootstrap/dist/css/bootstrap.min.css";
-import "@styles/global.css"
+import "@styles/global.css";
+import "./index.css";
 //Routes
-import AppRouter from '@routes/AppRouter';
+import AppRouter from "@routes/AppRouter";
 //Providers
-ReactDOM.createRoot(document.getElementById('root')!).render(
-        <AppRouter />
-);
+ReactDOM.createRoot(document.getElementById("root")!).render(<AppRouter />);

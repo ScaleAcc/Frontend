@@ -1,19 +1,15 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 * {
   box-sizing: border-box;
 }
-:root{
-  --primary-color:#1C1C1C;
-  --secondary-color:#9FA1A6;
-  --primary-background:#111111;
-  --secondary-background:#EBEEF0;
-  --approve-color:#0085FF;
-  --approve-background:#D0F4FF;
-  --success-color:#55BC97;
-  --blue-color:#628CDD;
+:root {
+  --primary-color: #1c1c1c;
+  --secondary-color: #9fa1a6;
+  --primary-background: #111111;
+  --secondary-background: #ebeef0;
+  --approve-color: #0085ff;
+  --approve-background: #d0f4ff;
+  --success-color: #55bc97;
+  --blue-color: #628cdd;
 }
 a {
   text-decoration: none;
@@ -35,15 +31,15 @@ h6 {
   margin: 0;
 }
 
-.page__container{
+.page__container {
   width: 90%;
   margin: 2rem auto;
   border-radius: 0.25rem;
-  padding:1.5rem;
+  padding: 1.5rem;
   background-color: var(--secondary-background);
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
-.btn-primary{
+.btn-primary {
   background-color: var(--primary-background);
   color: white;
   padding: 0.5rem 2rem;
@@ -51,7 +47,7 @@ h6 {
   border-radius: 0.5rem;
   transition: 0.3s linear;
 }
-.btn-primary:hover{
+.btn-primary:hover {
   background-color: transparent;
-  color:  var(--primary-background);
+  color: var(--primary-background);
 }
