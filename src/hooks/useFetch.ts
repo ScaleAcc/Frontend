@@ -94,7 +94,7 @@ function useFetch<T>(
       setError("");
 
       try {
-        const res: AxiosResponse<T> = await axios.get(url, {
+        const res: AxiosResponse<T> = await axios["get"](url, {
           params,
           signal: controller.signal,
         });

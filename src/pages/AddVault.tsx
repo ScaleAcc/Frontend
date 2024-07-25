@@ -94,9 +94,7 @@ const AddVault = () => {
           />
         </div>
         <div className="flex justify-end">
-          <Button className="mr-2 bg-light-blue text-white">
-            الرجوع للرئيسية
-          </Button>
+          <Button className="mr-2 text-white">الرجوع للرئيسية</Button>
           <Button className="bg-teal-500 text-white" type="submit">
             إضافة جديدة
           </Button>
