@@ -1,33 +1,50 @@
+import { useForm, SubmitHandler } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { LoginSchema } from "@/src/validations/login";
+
 import { FloatingLabel, PrimaryButton } from "@components/forms";
 import styles from "@styles/login.module.css";
 import Wave from "@assets/svg/wave.svg?react";
-import { FormEvent, useState } from "react";
+// import { FormEvent, useState } from "react";
+
+interface Iprops {
+  email: string;
+  password: string;
+}
+
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
-  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setEmail(e.target.value);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<Iprops>({
+    mode: "onBlur",
+    resolver: zodResolver(LoginSchema),
+  });
+  const submitForm: SubmitHandler<Iprops> = (data) => {
+    console.log(data);
   };
-
-  const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPassword(e.target.value);
-  };
-
-  const handleLogin = (e:FormEvent)=>{
-    e.preventDefault();
-    console.log(email);
-    console.log(password);
-  }
 
   return (
     <div className={styles.login__form}>
-      <form>
+      <form className="form" onSubmit={handleSubmit(submitForm)}>
         <h2 className={styles.login__header}>Scale</h2>
-        <FloatingLabel type="email" label="البريد الاكترونى" value={email} onChange={handleEmailChange}/>
-        <FloatingLabel type="password" label="كلمة المرور" value={password} onChange={handlePasswordChange}/>
+        <FloatingLabel
+          type="email"
+          label="البريد الاكترونى"
+          name="email"
+          register={register}
+          error={errors.email?.message}
+        />
 
-        <PrimaryButton title="تسجيل الدخول" onClick={handleLogin}/>
+        <FloatingLabel
+          type="password"
+          label="كلمة المرور"
+          name="password"
+          register={register}
+          error={errors.password?.message}
+        />
+        <PrimaryButton title="تسجيل الدخول" />
       </form>
       <div className={styles.wave__icon}>
         <Wave />
