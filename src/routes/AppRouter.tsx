@@ -7,6 +7,7 @@ import Error from "@pages/Error";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Vault from "@pages/Vault";
 import AddValut from "@pages/AddVault";
+import AccountsTree from "../pages/AccountsTree";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
       {
         path: "/vault/add-new",
         element: <AddValut />,
+      },
+      {
+        path: "/accounts-tree",
+        element: <AccountsTree />,
       },
     ],
   },
