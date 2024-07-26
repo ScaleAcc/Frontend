@@ -32,7 +32,7 @@ const AddVault = () => {
         className="pt-8 p-6"
         onSubmit={form.handleSubmit(submitForm)}
       >
-        <div className="grid grid-cols-3 gap-4 mb-4">
+        <div className="grid sm:grid-cols-3 grid-cols-1 gap-4 mb-4">
           <div className="col-span-1">
             <FormField
               control={form.control}
