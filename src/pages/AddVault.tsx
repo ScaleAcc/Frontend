@@ -13,6 +13,8 @@ import {
   FormLabel,
   FormMessage,
 } from "@components/ui/form";
+import Heading from "../components/common/Heading/Heading";
+import React from "react";
 
 const AddVault = () => {
   const form = useForm<z.infer<typeof AddVaultSchema>>({
@@ -23,13 +25,13 @@ const AddVault = () => {
     console.log(data);
   };
   return (
+    <div className="page__container">
+    <Heading title="اضافة خزنة"/>
     <Form {...form}>
       <form
-        className="mt-16 pt-16 p-6"
+        className="pt-8 p-6"
         onSubmit={form.handleSubmit(submitForm)}
       >
-        كود الخزنة اسم الخزنة
-        <h2 className="text-lg font-medium mb-4">إضافة خزنة</h2>
         <div className="grid grid-cols-3 gap-4 mb-4">
           <div className="col-span-1">
             <FormField
@@ -93,14 +95,15 @@ const AddVault = () => {
             )}
           />
         </div>
-        <div className="flex justify-end">
-          <Button className="mr-2 text-white">الرجوع للرئيسية</Button>
-          <Button className="bg-teal-500 text-white" type="submit">
+        <div className="flex justify-end gap-4">
+          <Button className="mr-2">الرجوع للرئيسية</Button>
+          <Button variant="secondary" type="submit">
             إضافة جديدة
           </Button>
         </div>
       </form>
     </Form>
+    </div>
   );
 };
 export default AddVault;
