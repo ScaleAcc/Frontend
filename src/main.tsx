@@ -1,7 +1,6 @@
 import ReactDOM from "react-dom/client";
 // Redux
 // Styles
-import "bootstrap/dist/css/bootstrap.min.css";
 import "@styles/global.css";
 import "./index.css";
 //Routes
