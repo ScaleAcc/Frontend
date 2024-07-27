@@ -100,7 +100,7 @@ const AccountsTree = () => {
             <Button variant="default" className="mr-2">
               إضافة جديدة
             </Button>
-            <Button variant="default" className="mr-2">
+            <Button variant="secondary" className="mr-2">
               الرجوع للرئيسية
             </Button>
           </div>
