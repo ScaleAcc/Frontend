@@ -18,8 +18,7 @@ const Vault = () => {
         <SearchInput />
       </div>
 
-      <div className="vault__table">
-      </div>
+      {/*Note: ADD Table  Here*/}
     </div>
   );
 };

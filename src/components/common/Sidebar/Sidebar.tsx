@@ -27,7 +27,7 @@ const Sidebar = () => {
   const [collapse, setCollapse] = useState(false);
 
   return (
-    <aside className={`${page__sidebar} ${collapse ? collapse__sidebar:""}`}>
+    <aside className={`${page__sidebar} ${!collapse ? collapse__sidebar:""}`}>
       <div className={top__sidebar}>
         <h2 className={sidebar__logo}>scale</h2>
 
