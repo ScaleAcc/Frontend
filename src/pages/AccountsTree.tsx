@@ -96,7 +96,7 @@ const AccountsTree = () => {
               )}
             />
           </div>
-          <div className="flex justify-end gap-4">
+          <div className="flex sm:justify-end justify-center gap-4 mt-12">
             <Button variant="default" className="mr-2">
               إضافة جديدة
             </Button>
