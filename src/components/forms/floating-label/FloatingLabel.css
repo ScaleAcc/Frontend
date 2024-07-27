@@ -20,7 +20,7 @@
 .floating__label label {
     position: absolute;
     right: 0.5rem;
-    top: 50%;
+    top: 25px;
     transform: translateY(-50%);
     transition: 0.3s linear;
     background-color: white;

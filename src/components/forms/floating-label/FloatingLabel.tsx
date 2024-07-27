@@ -24,8 +24,8 @@ const FloatingLabel = <TFloatingLabel extends FieldValues>({
         placeholder={label}
         {...register(name)}
       />
-      {error && <span className="text-red-500 text-sm mt-1">{error}</span>}
       <label htmlFor={`${type}-${label}`}>{label}</label>
+      {error && <span className="text-red-500 text-sm mt-1">{error}</span>}
     </div>
   );
 };

@@ -27,7 +27,7 @@ const Login = () => {
 
   return (
     <div className={styles.login__form}>
-      <form className="form" onSubmit={handleSubmit(submitForm)}>
+      <form className={styles.form} onSubmit={handleSubmit(submitForm)}>
         <h2 className={styles.login__header}>Scale</h2>
         <FloatingLabel
           type="email"
