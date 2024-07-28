@@ -99,9 +99,7 @@ const AddVault = () => {
           </div>
           <div className="flex justify-end gap-4">
             <Button className="mr-2">الرجوع للرئيسية</Button>
-            <Button variant="secondary" type="submit">
-              إضافة جديدة
-            </Button>
+            <Button type="submit">إضافة جديدة</Button>
           </div>
         </form>
       </Form>
