@@ -30,31 +30,32 @@ const AccountsTree = () => {
 
       <Form {...form}>
         <form className="pt-8" onSubmit={form.handleSubmit(submitForm)}>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+          <div className="sm:col-span-2 col-span-1">
+              <FormField
+                control={form.control}
+                name="vaultName"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>اختر اسم و نوع الحساب</FormLabel>
+                    <FormControl>
+                      {/*Note: Replace Input with dropdown*/}
+                      <Input placeholder="من فضلك ادخل اسم و نوع الحساب" {...field}/>
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
             <div className="col-span-1">
               <FormField
                 control={form.control}
                 name="vaultCode"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>كود الخزنة</FormLabel>
+                    <FormLabel>الكود</FormLabel>
                     <FormControl>
-                      <Input placeholder="من فضلك ادخل كود الخزنة" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </div>
-            <div className="col-span-1">
-              <FormField
-                control={form.control}
-                name="vaultName"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>اسم الخزنة</FormLabel>
-                    <FormControl>
-                      <Input placeholder="من فضلك ادخل اسم الخزنة" {...field} />
+                      <Input placeholder="من فضلك ادخل الكود" {...field} disabled/>
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -62,48 +63,14 @@ const AccountsTree = () => {
               />
             </div>
           </div>
-          <div className="mb-4">
-            <FormField
-              control={form.control}
-              name="currentBalance"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>رصيد الخزنة الحالي</FormLabel>
-                  <FormControl>
-                    <Input placeholder="من فضلك ادخل رصيد الخزنة" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-          </div>
-          <div className="mb-4">
-            <FormField
-              control={form.control}
-              name="description"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>وصف الخزنة</FormLabel>
-                  <FormControl>
-                    <Input
-                      placeholder="من فضلك ادخل وصف الخزنة"
-                      {...field}
-                      className="h-24"
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-          </div>
-          <div className="flex justify-end gap-4">
+
+          <div className="flex sm:justify-end justify-center gap-4 mt-12">
             <Button variant="default" className="mr-2">
-              إضافة جديدة
-            </Button>
-            <Button variant="default" className="mr-2">
-              الرجوع للرئيسية
+              حفظ 
             </Button>
           </div>
+
+          {/*Note: ADD Table  Here*/}
         </form>
       </Form>
     </div>
