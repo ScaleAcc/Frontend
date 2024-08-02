@@ -5,7 +5,8 @@ import { LoginSchema } from "@/src/validations/login";
 import { FloatingLabel, PrimaryButton } from "@components/forms";
 import styles from "@styles/login.module.css";
 import Wave from "@assets/svg/wave.svg?react";
-// import { FormEvent, useState } from "react";
+import useLogin from "../hooks/useLogin";
+import { useState } from "react";
 
 interface Iprops {
   email: string;
@@ -21,10 +22,18 @@ const Login = () => {
     mode: "onBlur",
     resolver: zodResolver(LoginSchema),
   });
+  const [loginData, setLoginData] = useState<Iprops>({
+    email: "",
+    password: "",
+  });
+  const { data: queryData } = useLogin(loginData);
   const submitForm: SubmitHandler<Iprops> = (data) => {
     console.log(data);
+    setLoginData(data);
+    if (queryData) {
+      console.log("Query Data:", queryData);
+    }
   };
-
   return (
     <div className={styles.login__form}>
       <form className={styles.form} onSubmit={handleSubmit(submitForm)}>
