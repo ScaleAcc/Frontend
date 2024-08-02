@@ -1,11 +1,12 @@
-import { useQuery } from "react-query";
+import { useMutation } from "react-query";
 interface Iprops {
   email: string;
   password: string;
 }
-const useLogin = (data: Iprops) => {
-  return useQuery({
-    queryFn: () =>
+//use mutaion
+const useLogin = () => {
+  return useMutation({
+    mutationFn: (data: Iprops) =>
       fetch("https://trombetta.mzservices.online/public/api/auth/login", {
         method: "POST",
         headers: {
@@ -16,7 +17,6 @@ const useLogin = (data: Iprops) => {
           password: data.password,
         }),
       }).then((response) => response.json()),
-    queryKey: ["login"],
   });
 };
 

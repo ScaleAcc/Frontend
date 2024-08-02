@@ -1,14 +1,18 @@
 import { useState, useEffect } from "react";
 import { Valuts, columns } from "./Columns";
 import { DataTable } from "./DataTable";
+import { decrypt } from "../utils/Utilty";
 
 async function getData(): Promise<Valuts[]> {
+  const token = localStorage.getItem("token") || "";
   const res = await fetch(
     "https://trombetta.mzservices.online/public/api/safe",
     {
       headers: {
-        authorization:
-          "Bearer 12|xuAb1ULXTtLDUKkiwolFlHIrT3Yq6bYPpzIBPYiua94cfaa7",
+        authorization: `Bearer ${decrypt(
+          token,
+          import.meta.env.VITE_TOKEN_SECRET
+        )}`,
       },
     }
   );
@@ -17,7 +21,7 @@ async function getData(): Promise<Valuts[]> {
   return data.data.data;
 }
 
-const Page = () => {
+const RenderValuts = () => {
   const [data, setData] = useState<Valuts[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -41,4 +45,4 @@ const Page = () => {
     </div>
   );
 };
-export default Page;
+export default RenderValuts;

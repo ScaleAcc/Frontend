@@ -6,7 +6,7 @@ import { FloatingLabel, PrimaryButton } from "@components/forms";
 import styles from "@styles/login.module.css";
 import Wave from "@assets/svg/wave.svg?react";
 import useLogin from "../hooks/useLogin";
-import { useState } from "react";
+import { encrypt } from "../utils/Utilty";
 
 interface Iprops {
   email: string;
@@ -22,17 +22,18 @@ const Login = () => {
     mode: "onBlur",
     resolver: zodResolver(LoginSchema),
   });
-  const [loginData, setLoginData] = useState<Iprops>({
-    email: "",
-    password: "",
-  });
-  const { data: queryData } = useLogin(loginData);
+  const { mutate } = useLogin();
   const submitForm: SubmitHandler<Iprops> = (data) => {
     console.log(data);
-    setLoginData(data);
-    if (queryData) {
-      console.log("Query Data:", queryData);
-    }
+    mutate(data, {
+      onSuccess(data) {
+        console.log(data);
+        localStorage.setItem(
+          "token",
+          encrypt(data.data.token, import.meta.env.VITE_TOKEN_SECRET)
+        );
+      },
+    });
   };
   return (
     <div className={styles.login__form}>
