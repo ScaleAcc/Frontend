@@ -68,7 +68,8 @@ const ActionsMenu: React.FC<{ detail: data }> = ({ detail }) => {
   };
 
   const handleEdit = () => {
-    navigate("/edit-manger", { state: { detail } });
+    const id = detail.id;
+    navigate("/edit-manger", { state: { id } });
   };
 
   const handleDelete = () => {
