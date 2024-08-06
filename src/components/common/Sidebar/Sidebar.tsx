@@ -1,10 +1,7 @@
 import { NavLink } from "react-router-dom";
 import "./styles.module.css";
 import styles from "./styles.module.css";
-import { 
-    PiVault,
-    PiGear, 
-} from "react-icons/pi";
+import { PiVault, PiGear } from "react-icons/pi";
 import { IoHomeOutline } from "react-icons/io5";
 import { FaRegMoneyBillAlt } from "react-icons/fa";
 import { MdOutlineAttachMoney } from "react-icons/md";
@@ -20,14 +17,14 @@ const {
   sidebar__pages,
   pages__links,
   sidebar__settings,
-  sidebar__collapse
+  sidebar__collapse,
 } = styles;
 
 const Sidebar = () => {
   const [collapse, setCollapse] = useState(false);
 
   return (
-    <aside className={`${page__sidebar} ${!collapse ? collapse__sidebar:""}`}>
+    <aside className={`${page__sidebar} ${!collapse ? collapse__sidebar : ""}`}>
       <div className={top__sidebar}>
         <h2 className={sidebar__logo}>scale</h2>
 
@@ -76,7 +73,7 @@ const Sidebar = () => {
             className={({ isActive }) =>
               isActive ? `${pages__links} ${styles.active}` : pages__links
             }
-            to={"/human-resource"}
+            to={"/all-mangers"}
           >
             <FiUsers size="25" />
             <span>الموارد البشرية</span>
@@ -96,14 +93,14 @@ const Sidebar = () => {
 
       <div className={sidebar__settings}>
         <NavLink className={pages__links} to={"/settings"}>
-            <PiGear size="25"/>
-            <span>الاعدادت</span>
+          <PiGear size="25" />
+          <span>الاعدادت</span>
         </NavLink>
-        <div 
-          className={sidebar__collapse} 
-          onClick={()=> setCollapse(!collapse)}
+        <div
+          className={sidebar__collapse}
+          onClick={() => setCollapse(!collapse)}
         >
-          <TbLayoutSidebarRightCollapse size="30"/>
+          <TbLayoutSidebarRightCollapse size="30" />
         </div>
       </div>
     </aside>

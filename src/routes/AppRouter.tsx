@@ -10,6 +10,9 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Vault from "@pages/Vault";
 import AddValut from "@pages/AddVault";
 import AccountsTree from "../pages/AccountsTree";
+import AllMangers from "../pages/AllMangers";
+import AddManger from "../pages/AddManger";
+import EditManger from "../pages/EditManger";
 
 const router = createBrowserRouter([
   {
@@ -32,6 +35,18 @@ const router = createBrowserRouter([
       {
         path: "/accounts-tree",
         element: <AccountsTree />,
+      },
+      {
+        path: "/all-mangers",
+        element: <AllMangers />,
+      },
+      {
+        path: "/add-manger",
+        element: <AddManger />,
+      },
+      {
+        path: "/edit-manger",
+        element: <EditManger />,
       },
     ],
   },
