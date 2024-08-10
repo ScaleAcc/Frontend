@@ -1,5 +1,5 @@
 import { z } from "zod";
-const AddVaultSchema = z.object({
+const AddAdmin = z.object({
   fisrtName: z
     .string({ message: "من فضلك ادحل اسم " })
     .min(2, "من فضلك ادحل اسم "),
@@ -19,4 +19,4 @@ const AddVaultSchema = z.object({
     .string({ message: "من فضلك ادخل كلمة مرور " })
     .min(2, "من فضلك ادحل كلمة مرور"),
 });
-export { AddVaultSchema };
+export { AddAdmin };

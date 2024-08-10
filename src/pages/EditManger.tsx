@@ -1,40 +1,188 @@
 import { useLocation } from "react-router-dom";
-import { decrypt } from "../utils/Utilty";
 import { useEffect } from "react";
-interface data {
-  first_name: number;
-  last_name: string;
-  email: string;
-  phone_number: string;
-  code: string;
-  id: string;
-  whatsapp_number: string;
-}
-async function getData(id: string) {
-  const token = localStorage.getItem("token") || "";
-  const res = await fetch(
-    `https://trombetta.mzservices.online/public/api/managers/${id}`,
-    {
-      headers: {
-        authorization: `Bearer ${decrypt(
-          token,
-          import.meta.env.VITE_TOKEN_SECRET
-        )}`,
-      },
-    }
-  );
-  const data = await res.json();
-  console.log(data.data);
-  return data.data;
-}
+import { useForm, SubmitHandler } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { AddAdmin } from "@/src/validations/addManger";
+import { Button } from "@components/ui/button";
+import { Input } from "@components/ui/input";
+import { z } from "zod";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@components/ui/form";
+import Heading from "../components/common/Heading/Heading";
+import getAdmin from "@hooks/useGetAdmin";
+import useEditManger from "@hooks/useEditManager";
 
-const EditManger = () => {
+const EditManager = () => {
   const location = useLocation();
   const { id } = location.state;
-  useEffect(() => {
-    getData(id);
-  }, [id]);
 
-  return <div></div>;
+  const form = useForm<z.infer<typeof AddAdmin>>({
+    mode: "onBlur",
+    resolver: zodResolver(AddAdmin),
+  });
+
+  const { mutate } = useEditManger(id);
+
+  useEffect(() => {
+    const fetchAdminData = async () => {
+      const fetchedAdminData = await getAdmin(id);
+      
+      form.reset({
+        fisrtName: fetchedAdminData.first_name,
+        lastName: fetchedAdminData.last_name,
+        email: fetchedAdminData.email,
+        number: fetchedAdminData.phone_number,
+        whatsNumber: fetchedAdminData.whatsapp_number,
+        password: "",
+      });
+    };
+
+    fetchAdminData();
+  }, [id, form]);
+
+  const submitForm: SubmitHandler<z.infer<typeof AddAdmin>> = (data) => {
+    console.log(data);
+    mutate(data, {
+      onSuccess(data) {
+        console.log(data);
+      },
+    });
+  };
+
+  return (
+    <div className="page__container">
+      <Heading title={`تعديل مدير لوحة تحكم #${id}`} />
+
+      <Form {...form}>
+        <form className="pt-8 p-6" onSubmit={form.handleSubmit(submitForm)}>
+          <div className="grid sm:grid-cols-3 grid-cols-1 gap-4 mb-4">
+            <div className="col-span-1">
+              <FormField
+                control={form.control}
+                name="fisrtName"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>الاسم الاول</FormLabel>
+                    <FormControl>
+                      <Input
+                        placeholder="من فضلك ادخل الاسم الاول"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+            <div className="col-span-1">
+              <FormField
+                control={form.control}
+                name="lastName"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>الاسم الثاني</FormLabel>
+                    <FormControl>
+                      <Input
+                        placeholder="من فضلك ادخل الاسم الثاني"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+            <div className="col-span-1">
+              <FormField
+                control={form.control}
+                name="email"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>الايميل</FormLabel>
+                    <FormControl>
+                      <Input
+                        placeholder="من فضلك ادخل الايميل"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+            <div className="col-span-1">
+              <FormField
+                control={form.control}
+                name="number"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>رقم التليفون</FormLabel>
+                    <FormControl>
+                      <Input
+                        placeholder="من فضلك ادخل رقم التليفون"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+            <div className="col-span-1">
+              <FormField
+                control={form.control}
+                name="whatsNumber"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>رقم الواتساب</FormLabel>
+                    <FormControl>
+                      <Input
+                        placeholder="من فضلك ادخل رقم تليفون الواتساب"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+            <div className="col-span-1">
+              <FormField
+                control={form.control}
+                name="password"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>الباسورد</FormLabel>
+                    <FormControl>
+                      <Input
+                        placeholder="من فضلك ادخل الباسورد"
+                        {...field}
+                        type="password"
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+          </div>
+
+          <div className="flex justify-end gap-4">
+            <Button className="mr-2">الرجوع للرئيسية</Button>
+            <Button variant="secondary" type="submit">
+              تعديل
+            </Button>
+          </div>
+        </form>
+      </Form>
+    </div>
+  );
 };
-export default EditManger;
+
+export default EditManager;

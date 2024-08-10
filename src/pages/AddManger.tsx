@@ -1,6 +1,6 @@
 import { useForm, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { AddVaultSchema } from "@/src/validations/addManger";
+import { AddAdmin } from "@/src/validations/addManger";
 import { Button } from "../components/ui/button";
 import { Input } from "@components/ui/input";
 import { z } from "zod";
@@ -16,12 +16,12 @@ import Heading from "../components/common/Heading/Heading";
 import useAddManger from "../hooks/useAddManger";
 
 const AddManger = () => {
-  const form = useForm<z.infer<typeof AddVaultSchema>>({
+  const form = useForm<z.infer<typeof AddAdmin>>({
     mode: "onBlur",
-    resolver: zodResolver(AddVaultSchema),
+    resolver: zodResolver(AddAdmin),
   });
   const { mutate } = useAddManger();
-  const submitForm: SubmitHandler<z.infer<typeof AddVaultSchema>> = (data) => {
+  const submitForm: SubmitHandler<z.infer<typeof AddAdmin>> = (data) => {
     console.log(data);
     mutate(data, {
       onSuccess(data) {
