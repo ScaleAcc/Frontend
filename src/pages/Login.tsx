@@ -7,9 +7,6 @@ import styles from "@styles/login.module.css";
 import Wave from "@assets/svg/wave.svg?react";
 import useLogin from "../hooks/useLogin";
 import { encrypt } from "../utils/Utilty";
-import SuccessToast from "../components/toasts/SuccessToast";
-import { useNavigate } from "react-router-dom";
-import ErrorToast from "../components/toasts/ErrorToast";
 
 interface Iprops {
   email: string;
@@ -30,6 +27,7 @@ const Login = () => {
     resolver: zodResolver(LoginSchema),
   });
   const { mutate } = useLogin();
+
   const submitForm: SubmitHandler<Iprops> = (data) => {
     console.log(data);
     mutate(data, {
@@ -39,16 +37,10 @@ const Login = () => {
           "token",
           encrypt(data.data.token, import.meta.env.VITE_TOKEN_SECRET)
         );
-        SuccessToast("hi", navigate, "/");
-      },
-      onError(error) {
-        console.log(error);
-        ErrorToast(
-          "The selected email or mobile is invalid. (and 1 more error)"
-        );
       },
     });
   };
+
   return (
     <div className={styles.login__form}>
       <form className={styles.form} onSubmit={handleSubmit(submitForm)}>
@@ -60,7 +52,6 @@ const Login = () => {
           register={register}
           error={errors.email?.message}
         />
-
         <FloatingLabel
           type="password"
           label="كلمة المرور"

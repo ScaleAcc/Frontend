@@ -14,8 +14,12 @@ import {
 } from "@components/ui/form";
 import Heading from "../components/common/Heading/Heading";
 import useAddValut from "../hooks/useAddValut";
+import SuccessToast from "../components/toasts/SuccessToast";
+import { useNavigate } from "react-router-dom";
+import ErrorToast from "../components/toasts/ErrorToast";
 
 const AddVault = () => {
+  const navigate = useNavigate();
   const form = useForm<z.infer<typeof AddVaultSchema>>({
     mode: "onBlur",
     resolver: zodResolver(AddVaultSchema),
@@ -25,7 +29,11 @@ const AddVault = () => {
     console.log(data);
     mutate(data, {
       onSuccess(data) {
-        console.log(data);
+        if(data.code){
+          SuccessToast("تم اضافة الخزنة بنجاح", navigate, "/vault")
+        }else{
+          ErrorToast(data.error.message);
+        }
       },
     });
   };

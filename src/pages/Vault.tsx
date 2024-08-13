@@ -19,7 +19,6 @@ const Vault = () => {
         <SearchInput />
       </div>
       <RenderValuts />
-      {/*Note: ADD Table  Here*/}
     </div>
   );
 };
