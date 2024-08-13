@@ -7,13 +7,20 @@ import styles from "@styles/login.module.css";
 import Wave from "@assets/svg/wave.svg?react";
 import useLogin from "../hooks/useLogin";
 import { encrypt } from "../utils/Utilty";
+import SuccessToast from "../components/toasts/SuccessToast";
+import { useNavigate } from "react-router-dom";
+import ErrorToast from "../components/toasts/ErrorToast";
 
 interface Iprops {
   email: string;
   password: string;
+  error: {
+    message: string;
+  };
 }
 
 const Login = () => {
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -31,6 +38,13 @@ const Login = () => {
         localStorage.setItem(
           "token",
           encrypt(data.data.token, import.meta.env.VITE_TOKEN_SECRET)
+        );
+        SuccessToast("hi", navigate, "/");
+      },
+      onError(error) {
+        console.log(error);
+        ErrorToast(
+          "The selected email or mobile is invalid. (and 1 more error)"
         );
       },
     });
