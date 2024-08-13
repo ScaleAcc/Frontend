@@ -23,8 +23,12 @@ import {
   SelectValue,
 } from "@components/ui/select";
 import useAccountsTree from "../hooks/useAccountsTree";
+import { useNavigate } from "react-router-dom";
+import SuccessToast from "@components/toasts/SuccessToast";
+import ErrorToast from "@components/toasts/ErrorToast";
 
 const AccountsTree = () => {
+  const navigate = useNavigate();
   const [dataNameAccount, setDataNameAccount] = useState([
     { id: 1, name: "الموظفين" },
   ]);
@@ -60,10 +64,13 @@ const AccountsTree = () => {
   });
   const { mutate } = useAccountsTree();
   const submitForm: SubmitHandler<z.infer<typeof AccountTree>> = (data) => {
-    console.log(data);
     mutate(data, {
       onSuccess(data) {
-        console.log(data);
+        if(data.code){
+          SuccessToast("تم اضافة الحساب بنجاح", navigate, "/")
+        }else{
+          ErrorToast(data.error.message);
+        }
       },
     });
   };

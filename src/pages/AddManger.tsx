@@ -1,7 +1,7 @@
 import { useForm, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { AddAdmin } from "@/src/validations/addManger";
-import { Button } from "../components/ui/button";
+import { Button } from "@components/ui/button";
 import { Input } from "@components/ui/input";
 import { z } from "zod";
 import {
@@ -12,20 +12,27 @@ import {
   FormLabel,
   FormMessage,
 } from "@components/ui/form";
-import Heading from "../components/common/Heading/Heading";
-import useAddManger from "../hooks/useAddManger";
+import Heading from "@components/common/Heading/Heading";
+import useAddManger from "@hooks/useAddManger";
+import SuccessToast from "@components/toasts/SuccessToast";
+import ErrorToast from "@components/toasts/ErrorToast";
+import { useNavigate } from "react-router-dom";
 
 const AddManger = () => {
+  const navigate = useNavigate();
   const form = useForm<z.infer<typeof AddAdmin>>({
     mode: "onBlur",
     resolver: zodResolver(AddAdmin),
   });
   const { mutate } = useAddManger();
   const submitForm: SubmitHandler<z.infer<typeof AddAdmin>> = (data) => {
-    console.log(data);
     mutate(data, {
       onSuccess(data) {
-        console.log(data);
+        if(data.code){
+          SuccessToast("تم اضافة مدير بنجاح", navigate, "/all-mangers")
+        }else{
+          ErrorToast(data.error.message);
+        }
       },
     });
   };

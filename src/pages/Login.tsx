@@ -7,6 +7,9 @@ import styles from "@styles/login.module.css";
 import Wave from "@assets/svg/wave.svg?react";
 import useLogin from "../hooks/useLogin";
 import { encrypt } from "../utils/Utilty";
+import { useNavigate } from "react-router-dom";
+import SuccessToast from "@components/toasts/SuccessToast";
+import ErrorToast from "@components/toasts/ErrorToast";
 
 interface Iprops {
   email: string;
@@ -14,6 +17,7 @@ interface Iprops {
 }
 
 const Login = () => {
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -23,18 +27,25 @@ const Login = () => {
     resolver: zodResolver(LoginSchema),
   });
   const { mutate } = useLogin();
+
   const submitForm: SubmitHandler<Iprops> = (data) => {
     console.log(data);
     mutate(data, {
       onSuccess(data) {
-        console.log(data);
-        localStorage.setItem(
-          "token",
-          encrypt(data.data.token, import.meta.env.VITE_TOKEN_SECRET)
-        );
+        if(data.code){
+          localStorage.setItem(
+            "token",
+            encrypt(data.data.token, import.meta.env.VITE_TOKEN_SECRET)
+          );
+          SuccessToast("تم تسجيل الدخول بنجاح", navigate, "/");
+        }else{
+          ErrorToast(data.error.message);
+        }
+        
       },
     });
   };
+
   return (
     <div className={styles.login__form}>
       <form className={styles.form} onSubmit={handleSubmit(submitForm)}>
@@ -46,7 +57,6 @@ const Login = () => {
           register={register}
           error={errors.email?.message}
         />
-
         <FloatingLabel
           type="password"
           label="كلمة المرور"

@@ -1,4 +1,4 @@
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -17,8 +17,11 @@ import {
 import Heading from "../components/common/Heading/Heading";
 import getAdmin from "@hooks/useGetAdmin";
 import useEditManger from "@hooks/useEditManager";
+import SuccessToast from "@components/toasts/SuccessToast";
+import ErrorToast from "@components/toasts/ErrorToast";
 
 const EditManager = () => {
+  const navigate = useNavigate();
   const location = useLocation();
   const { id } = location.state;
 
@@ -47,10 +50,13 @@ const EditManager = () => {
   }, [id, form]);
 
   const submitForm: SubmitHandler<z.infer<typeof AddAdmin>> = (data) => {
-    console.log(data);
     mutate(data, {
       onSuccess(data) {
-        console.log(data);
+        if(data.code){
+          SuccessToast("تم تعديل المدير بنجاح", navigate, "/all-mangers")
+        }else{
+          ErrorToast(data.error.message);
+        }
       },
     });
   };
