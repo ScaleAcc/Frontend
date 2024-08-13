@@ -7,6 +7,7 @@ import styles from "@styles/login.module.css";
 import Wave from "@assets/svg/wave.svg?react";
 import useLogin from "../hooks/useLogin";
 import { encrypt } from "../utils/Utilty";
+import { useNavigate } from "react-router-dom";
 
 interface Iprops {
   email: string;
