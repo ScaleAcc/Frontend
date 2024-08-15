@@ -8,6 +8,8 @@ import Wave from "@assets/svg/wave.svg?react";
 import useLogin from "../hooks/useLogin";
 import { encrypt } from "../utils/Utilty";
 import { useNavigate } from "react-router-dom";
+import SuccessToast from "../components/toasts/SuccessToast";
+import ErrorToast from "../components/toasts/ErrorToast";
 
 interface Iprops {
   email: string;
@@ -38,6 +40,11 @@ const Login = () => {
           "token",
           encrypt(data.data.token, import.meta.env.VITE_TOKEN_SECRET)
         );
+        if (data.code) {
+          SuccessToast("تم تسجيل الدخول بنجاح", navigate, "/");
+        } else {
+          ErrorToast(data.error.message);
+        }
       },
     });
   };
