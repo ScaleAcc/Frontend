@@ -8,6 +8,7 @@ import { MdOutlineAttachMoney } from "react-icons/md";
 import { TbLayoutSidebarRightCollapse } from "react-icons/tb";
 import { CiDatabase } from "react-icons/ci";
 import { FiUsers } from "react-icons/fi";
+import { FaMapMarkerAlt } from "react-icons/fa";
 import { useState } from "react";
 const {
   page__sidebar,
@@ -63,10 +64,10 @@ const Sidebar = () => {
             className={({ isActive }) =>
               isActive ? `${pages__links} ${styles.active}` : pages__links
             }
-            to={"/home-data"}
+            to={"/all-employees"}
           >
             <CiDatabase size="25" />
-            <span>البيانات الرئيسية</span>
+            <span>بيانات الموظفين</span>
           </NavLink>
 
           <NavLink
@@ -83,7 +84,17 @@ const Sidebar = () => {
             className={({ isActive }) =>
               isActive ? `${pages__links} ${styles.active}` : pages__links
             }
-            to={"/income"}
+            to={"/all-country"}
+          >
+            <FaMapMarkerAlt size="25" />
+            <span>المدن </span>
+          </NavLink>
+
+          <NavLink
+            className={({ isActive }) =>
+              isActive ? `${pages__links} ${styles.active}` : pages__links
+            }
+            to={"/employees-salary"}
           >
             <FaRegMoneyBillAlt size="25" />
             <span>الدخل</span>

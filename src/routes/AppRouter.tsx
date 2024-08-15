@@ -13,6 +13,11 @@ import AccountsTree from "../pages/AccountsTree";
 import AllMangers from "../pages/AllMangers";
 import AddManger from "../pages/AddManger";
 import EditManger from "../pages/EditManger";
+import Countries from "../pages/Countries";
+import Employees from "../pages/Employees";
+import EditEmployee from "../pages/EditEmployee";
+import AddEmployee from "../pages/AddEmployee";
+import EmployeesSalary from "../pages/EmployeesSalary";
 
 const router = createBrowserRouter([
   {
@@ -47,6 +52,26 @@ const router = createBrowserRouter([
       {
         path: "/edit-manger",
         element: <EditManger />,
+      },
+      {
+        path: "/all-country",
+        element: <Countries />,
+      },
+      {
+        path: "/all-employees",
+        element: <Employees />,
+      },
+      {
+        path: "/edit-employee",
+        element: <EditEmployee />,
+      },
+      {
+        path: "/add-employee",
+        element: <AddEmployee />,
+      },
+      {
+        path: "/employees-salary",
+        element: <EmployeesSalary />,
       },
     ],
   },
