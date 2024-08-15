@@ -2,7 +2,7 @@ import Heading from "@components/common/Heading/Heading";
 import { Link } from "react-router-dom";
 import styles from "@styles/vault.module.css";
 import { SearchInput } from "@components/forms";
-import RenderValuts from "../vaults/RenderValuts";
+import RenderValuts from "@/src/tables/vaultsTable/RenderValuts";
 const { vault__page, vault__header, vault__search } = styles;
 const Vault = () => {
   return (
