@@ -1,7 +1,7 @@
 import { MoreHorizontal } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { decrypt } from "../../utils/Utilty";
-
+import { useQueryClient } from "react-query";
 import withReactContent from "sweetalert2-react-content";
 import Swal from "sweetalert2";
 import { Button } from "@components/ui/button";
@@ -15,6 +15,7 @@ import {
 } from "@components/ui/dropdown-menu";
 import { data } from "./Columns";
 const ActionsMenu: React.FC<{ detail: data }> = ({ detail }) => {
+  const queryClient = useQueryClient();
   const MySwal = withReactContent(Swal);
   const navigate = useNavigate();
 
@@ -54,7 +55,10 @@ const ActionsMenu: React.FC<{ detail: data }> = ({ detail }) => {
       }
     )
       .then((response) => response.json())
-      .then((data) => console.log(data))
+      .then((data) => {
+        console.log(data);
+        queryClient.invalidateQueries({ queryKey: ["managers"] });
+      })
       .catch((error) => console.error("Error:", error));
   };
 

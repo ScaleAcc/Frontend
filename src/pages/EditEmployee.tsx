@@ -42,13 +42,11 @@ const EditEmployee = () => {
   const [dataCountry, setDataCountry] = useState([
     { id: 1, code: "48512", country_name: "sbdh" },
   ]);
-  const [currCountry, setCurrCountry] = useState("");
   useEffect(() => {
     const fetchAdminData = async () => {
       const fetchedAdminData = await getemployee(id);
       const countries = await getCountries();
       setDataCountry(countries);
-      setCurrCountry(fetchedAdminData.country.country_name);
       form.reset({
         Fname: fetchedAdminData.Fname,
         Lname: fetchedAdminData.Lname,
@@ -173,58 +171,64 @@ const EditEmployee = () => {
               <FormField
                 control={form.control}
                 name="country_id"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>اسم المحافظة او الدولة </FormLabel>
-                    <Select
-                      onValueChange={field.onChange}
-                      defaultValue={field.value}
-                    >
-                      <FormControl>
-                        <SelectTrigger>
-                          <SelectValue placeholder={currCountry} />
-                        </SelectTrigger>
-                      </FormControl>
-                      <SelectContent>
-                        {dataCountry.map((country) => (
-                          <SelectItem
-                            key={country.id}
-                            value={String(country.id)}
-                          >
-                            {country.country_name}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                    <FormMessage />
-                  </FormItem>
-                )}
+                render={({ field }) => {
+                  return (
+                    <FormItem>
+                      <FormLabel>اسم المحافظة او الدولة </FormLabel>
+                      <Select
+                        onValueChange={field.onChange}
+                        defaultValue={field.value}
+                      >
+                        <FormControl>
+                          <SelectTrigger>
+                            <SelectValue placeholder={field.value} />
+                          </SelectTrigger>
+                        </FormControl>
+                        <SelectContent>
+                          {dataCountry.map((country) => (
+                            <SelectItem
+                              key={country.id}
+                              value={String(country.id)}
+                            >
+                              {country.country_name}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                      <FormMessage />
+                    </FormItem>
+                  );
+                }}
               />
             </div>
             <div className="col-span-1">
               <FormField
                 control={form.control}
                 name="status"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel> الحالة</FormLabel>
-                    <Select
-                      onValueChange={field.onChange}
-                      defaultValue={field.value}
-                    >
-                      <FormControl>
-                        <SelectTrigger>
-                          <SelectValue placeholder="من فضلك اختر حالة الموظف " />
-                        </SelectTrigger>
-                      </FormControl>
-                      <SelectContent>
-                        <SelectItem value={"Enabled"}>{"غير متاح"}</SelectItem>
-                        <SelectItem value={"Disabled"}>{"متاح"}</SelectItem>
-                      </SelectContent>
-                    </Select>
-                    <FormMessage />
-                  </FormItem>
-                )}
+                render={({ field }) => {
+                  return (
+                    <FormItem>
+                      <FormLabel> الحالة</FormLabel>
+                      <Select
+                        onValueChange={field.onChange}
+                        defaultValue={field.value}
+                      >
+                        <FormControl>
+                          <SelectTrigger>
+                            <SelectValue placeholder={field.value} />
+                          </SelectTrigger>
+                        </FormControl>
+                        <SelectContent>
+                          <SelectItem value={"Enabled"}>
+                            {"غير متاح"}
+                          </SelectItem>
+                          <SelectItem value={"Disabled"}>{"متاح"}</SelectItem>
+                        </SelectContent>
+                      </Select>
+                      <FormMessage />
+                    </FormItem>
+                  );
+                }}
               />
             </div>
           </div>

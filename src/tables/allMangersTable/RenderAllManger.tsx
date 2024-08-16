@@ -1,47 +1,17 @@
-import { useState, useEffect } from "react";
-import { data, columns } from "./Columns";
+import { columns } from "./Columns";
 import { DataTable } from "./DataTable";
-import { decrypt } from "@/src/utils/Utilty";
-
-async function getData(): Promise<data[]> {
-  const token = localStorage.getItem("token") || "";
-  const res = await fetch(
-    "https://trombetta.mzservices.online/public/api/managers",
-    {
-      headers: {
-        authorization: `Bearer ${decrypt(
-          token,
-          import.meta.env.VITE_TOKEN_SECRET
-        )}`,
-      },
-    }
-  );
-  const data = await res.json();
-  console.log(data.data.data);
-  return data.data.data;
-}
+import useGetAllManagers from "@/src/hooks/useGetAllManagers";
 
 const RenderAllManger = () => {
-  const [data, setData] = useState<data[]>([]);
-  const [loading, setLoading] = useState(true);
+  const { data, isLoading } = useGetAllManagers();
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const result = await getData();
-      setData(result);
-      setLoading(false);
-    };
-
-    fetchData();
-  }, []);
-
-  if (loading) {
+  if (isLoading) {
     return <div>Loading...</div>;
   }
 
   return (
     <div className="container mx-auto py-10">
-      <DataTable columns={columns} data={data} />
+      <DataTable columns={columns} data={data!} />
     </div>
   );
 };
