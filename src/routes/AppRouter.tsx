@@ -7,17 +7,18 @@ import Login from "@pages/Login";
 import Error from "@pages/Error";
 // Router Functions
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Vault from "@pages/Vault";
-import AddValut from "@pages/AddVault";
-import AccountsTree from "../pages/AccountsTree";
-import AllMangers from "../pages/AllMangers";
-import AddManger from "../pages/AddManger";
-import EditManger from "../pages/EditManger";
-import Countries from "../pages/Countries";
-import Employees from "../pages/Employees";
-import EditEmployee from "../pages/EditEmployee";
-import AddEmployee from "../pages/AddEmployee";
-import EmployeesSalary from "../pages/EmployeesSalary";
+import Vault from "@/src/pages/vault/Vault";
+import AddValut from "@/src/pages/vault/AddVault";
+import AccountsTree from "@pages/AccountsTree";
+import AllMangers from "@pages/allMangers/AllMangers";
+import AddManger from "@pages/allMangers/AddManger";
+import EditManger from "@pages/allMangers/EditManger";
+import Countries from "@pages/Countries";
+import Employees from "@pages/employees/Employees";
+import EditEmployee from "@pages/employees/EditEmployee";
+import AddEmployee from "@pages/employees/AddEmployee";
+import EmployeesSalary from "@pages/EmployeesSalary";
+import AddEmployeeSalary from "@pages/AddEmployeeSalary";
 
 const router = createBrowserRouter([
   {
@@ -72,6 +73,10 @@ const router = createBrowserRouter([
       {
         path: "/employees-salary",
         element: <EmployeesSalary />,
+      },
+      {
+        path: "/add-employees-salary",
+        element: <AddEmployeeSalary />,
       },
     ],
   },
