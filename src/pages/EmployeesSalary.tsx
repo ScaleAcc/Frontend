@@ -9,7 +9,7 @@ const EmployeesSalary = () => {
       <div className={vault__header}>
         <Heading title="رواتب الموظفيين" />
 
-        <Link className="btn-primary" to="/add-manger">
+        <Link className="btn-primary" to="/add-employees-salary">
           اضافة راتب
         </Link>
       </div>
