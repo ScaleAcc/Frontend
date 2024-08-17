@@ -1,4 +1,5 @@
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@components/ui/button";
@@ -19,60 +20,52 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@components/ui/select";
-import Heading from "../components/common/Heading/Heading";
+import Heading from "@components/common/Heading/Heading";
 import SuccessToast from "@components/toasts/SuccessToast";
 import ErrorToast from "@components/toasts/ErrorToast";
-import { addEmployee } from "../validations/addEmployee";
-import useAddEmployee from "../hooks/useAddEmployee";
+import getemployee from "@hooks/useGetEmployee";
+import useEditEmployee from "@hooks/useEditEmployee";
+import { addEmployee } from "@validations/addEmployee";
+import getCountries from "@hooks/useGetCountries";
 
-import { decrypt } from "../utils/Utilty";
-import { useEffect, useState } from "react";
-
-const AddEmployee = () => {
-  const [dataCountry, setDataCountry] = useState([
-    { id: 1, code: "48512", country_name: "sbdh" },
-  ]);
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const token = localStorage.getItem("token") || "";
-        const res = await fetch(
-          "https://trombetta.mzservices.online/public/api/countries",
-          {
-            headers: {
-              authorization: `Bearer ${decrypt(
-                token,
-                import.meta.env.VITE_TOKEN_SECRET
-              )}`,
-            },
-          }
-        );
-        const data = await res.json();
-        console.log(data.data.data);
-        setDataCountry(data.data.data);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-
-    fetchData();
-  }, []);
+const EditEmployee = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const { id } = location.state;
 
   const form = useForm<z.infer<typeof addEmployee>>({
     mode: "onBlur",
     resolver: zodResolver(addEmployee),
   });
 
-  const { mutate } = useAddEmployee();
+  const { mutate } = useEditEmployee(id);
+  const [dataCountry, setDataCountry] = useState([
+    { id: 1, code: "48512", country_name: "sbdh" },
+  ]);
+  useEffect(() => {
+    const fetchAdminData = async () => {
+      const fetchedAdminData = await getemployee(id);
+      const countries = await getCountries();
+      setDataCountry(countries);
+      form.reset({
+        Fname: fetchedAdminData.Fname,
+        Lname: fetchedAdminData.Lname,
+        current_salary: fetchedAdminData.current_salary,
+        phone_number: fetchedAdminData.phone_number,
+        whatsapp_number: fetchedAdminData.whatsapp_number,
+        status: fetchedAdminData.status,
+        country_id: fetchedAdminData.country.country_name,
+      });
+    };
+
+    fetchAdminData();
+  }, [id, form]);
 
   const submitForm: SubmitHandler<z.infer<typeof addEmployee>> = (data) => {
     mutate(data, {
       onSuccess(data) {
-        console.log(data);
-
         if (data.code) {
-          SuccessToast("تم اضافة الموظف بنجاح", navigate, "/all-employees");
+          SuccessToast("تم تعديل الموظف بنجاح", navigate, "/all-employees");
         } else {
           ErrorToast(data.error.message);
         }
@@ -82,7 +75,7 @@ const AddEmployee = () => {
 
   return (
     <div className="page__container">
-      <Heading title={`انشاء موظف `} />
+      <Heading title={`تعديل موظف #${id}`} />
 
       <Form {...form}>
         <form className="pt-8 p-6" onSubmit={form.handleSubmit(submitForm)}>
@@ -178,58 +171,64 @@ const AddEmployee = () => {
               <FormField
                 control={form.control}
                 name="country_id"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>اسم المحافظة او الدولة </FormLabel>
-                    <Select
-                      onValueChange={field.onChange}
-                      defaultValue={field.value}
-                    >
-                      <FormControl>
-                        <SelectTrigger>
-                          <SelectValue placeholder="من فضلك اختر اسم المحافظة او الدولة " />
-                        </SelectTrigger>
-                      </FormControl>
-                      <SelectContent>
-                        {dataCountry.map((country) => (
-                          <SelectItem
-                            key={country.id}
-                            value={String(country.id)}
-                          >
-                            {country.country_name}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                    <FormMessage />
-                  </FormItem>
-                )}
+                render={({ field }) => {
+                  return (
+                    <FormItem>
+                      <FormLabel>اسم المحافظة او الدولة </FormLabel>
+                      <Select
+                        onValueChange={field.onChange}
+                        defaultValue={field.value}
+                      >
+                        <FormControl>
+                          <SelectTrigger>
+                            <SelectValue placeholder={field.value} />
+                          </SelectTrigger>
+                        </FormControl>
+                        <SelectContent>
+                          {dataCountry.map((country) => (
+                            <SelectItem
+                              key={country.id}
+                              value={String(country.id)}
+                            >
+                              {country.country_name}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                      <FormMessage />
+                    </FormItem>
+                  );
+                }}
               />
             </div>
             <div className="col-span-1">
               <FormField
                 control={form.control}
                 name="status"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel> الحالة</FormLabel>
-                    <Select
-                      onValueChange={field.onChange}
-                      defaultValue={field.value}
-                    >
-                      <FormControl>
-                        <SelectTrigger>
-                          <SelectValue placeholder="من فضلك اختر حالة الموظف " />
-                        </SelectTrigger>
-                      </FormControl>
-                      <SelectContent>
-                        <SelectItem value={"Enabled"}>{"غير متاح"}</SelectItem>
-                        <SelectItem value={"Disabled"}>{"متاح"}</SelectItem>
-                      </SelectContent>
-                    </Select>
-                    <FormMessage />
-                  </FormItem>
-                )}
+                render={({ field }) => {
+                  return (
+                    <FormItem>
+                      <FormLabel> الحالة</FormLabel>
+                      <Select
+                        onValueChange={field.onChange}
+                        defaultValue={field.value}
+                      >
+                        <FormControl>
+                          <SelectTrigger>
+                            <SelectValue placeholder={field.value} />
+                          </SelectTrigger>
+                        </FormControl>
+                        <SelectContent>
+                          <SelectItem value={"Enabled"}>
+                            {"غير متاح"}
+                          </SelectItem>
+                          <SelectItem value={"Disabled"}>{"متاح"}</SelectItem>
+                        </SelectContent>
+                      </Select>
+                      <FormMessage />
+                    </FormItem>
+                  );
+                }}
               />
             </div>
           </div>
@@ -237,7 +236,7 @@ const AddEmployee = () => {
           <div className="flex justify-end gap-4">
             <Button className="mr-2">الرجوع للرئيسية</Button>
             <Button variant="secondary" type="submit">
-              اضافة
+              تعديل
             </Button>
           </div>
         </form>
@@ -246,4 +245,4 @@ const AddEmployee = () => {
   );
 };
 
-export default AddEmployee;
+export default EditEmployee;
