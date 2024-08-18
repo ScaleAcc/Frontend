@@ -9,6 +9,9 @@ import { TbLayoutSidebarRightCollapse } from "react-icons/tb";
 import { CiDatabase } from "react-icons/ci";
 import { FiUsers } from "react-icons/fi";
 import { FaMapMarkerAlt } from "react-icons/fa";
+import { FcMoneyTransfer } from "react-icons/fc";
+import { BsFillClipboard2DataFill } from "react-icons/bs";
+
 import { useState } from "react";
 const {
   page__sidebar,
@@ -99,10 +102,28 @@ const Sidebar = () => {
             <FaRegMoneyBillAlt size="25" />
             <span>الدخل</span>
           </NavLink>
+          <NavLink
+            className={({ isActive }) =>
+              isActive ? `${pages__links} ${styles.active}` : pages__links
+            }
+            to={"/expense-type-section"}
+          >
+            <BsFillClipboard2DataFill size="25" />
+            <span>انواع واقسام المصروفات</span>
+          </NavLink>
+          <NavLink
+            className={({ isActive }) =>
+              isActive ? `${pages__links} ${styles.active}` : pages__links
+            }
+            to={"/expense-value"}
+          >
+            <FcMoneyTransfer size="25" />
+            <span> قيم المصروفات</span>
+          </NavLink>
         </div>
       </div>
 
-      <div className={sidebar__settings}>
+      <div className={`${sidebar__settings} mt-10`}>
         <NavLink className={pages__links} to={"/settings"}>
           <PiGear size="25" />
           <span>الاعدادت</span>

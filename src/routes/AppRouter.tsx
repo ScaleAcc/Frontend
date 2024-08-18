@@ -19,6 +19,8 @@ import EditEmployee from "@pages/employees/EditEmployee";
 import AddEmployee from "@pages/employees/AddEmployee";
 import EmployeesSalary from "@pages/EmployeesSalary";
 import AddEmployeeSalary from "@pages/AddEmployeeSalary";
+import ExpenseSection from "@pages/ExpenseSection";
+import ExpenseValue from "@pages/ExpenseValue";
 
 const router = createBrowserRouter([
   {
@@ -77,6 +79,14 @@ const router = createBrowserRouter([
       {
         path: "/add-employees-salary",
         element: <AddEmployeeSalary />,
+      },
+      {
+        path: "/expense-type-section",
+        element: <ExpenseSection />,
+      },
+      {
+        path: "/expense-value",
+        element: <ExpenseValue />,
       },
     ],
   },
