@@ -2,7 +2,7 @@ import { z } from "zod";
 
 const addEmployeeSalary = z.object({
   receipt_value: z
-    .number({ message: "من فضلك أدخل قيمة الإيصال" })
+    .string({ message: "من فضلك أدخل قيمة الإيصال" })
     .min(1, "قيمة الإيصال يجب أن تحتوي على حرفين على الأقل"),
   receipt_date: z
     .string({ message: "من فضلك أدخل تاريخ الإيصال" })

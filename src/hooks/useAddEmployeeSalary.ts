@@ -2,7 +2,7 @@ import { useMutation } from "react-query";
 import { decrypt } from "../utils/Utilty";
 
 interface Iprops {
-  receipt_value: number;
+  receipt_value: string;
   receipt_date: string;
   notes: string;
   payment_receipt_image: string;

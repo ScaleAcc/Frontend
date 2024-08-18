@@ -80,7 +80,6 @@ const AddEmployeeSalary = () => {
                       <Input
                         placeholder=" (راتب الموظف) من فضلك ادخل قيمة سند الصرف"
                         {...field}
-                        type="number"
                       />
                     </FormControl>
                     <FormMessage />
